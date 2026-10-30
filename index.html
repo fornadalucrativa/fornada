@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fornada Lucrativa — preço justo para quem vende comida feita em casa</title>
+<meta name="description" content="Guia, calculadora no celular e fichas para calcular o custo real de cada receita (ingredientes, embalagem, gás, custos fixos, taxas e a sua hora) e cobrar um preço que se sustenta. R$ 37, pagamento único.">
+<meta name="theme-color" content="#3B2416">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Fornada Lucrativa — preço justo para a receita. E para quem faz.">
+<meta property="og:description" content="Kit com guia, calculadora no celular e fichas para quem vende bolos, doces, salgados, marmitas e pães feitos em casa.">
+<!-- Após publicar, troque por endereço absoluto, ex.: https://fornadalucrativa.github.io/fornada/img/og.png (se o repositório da página se chamar "fornada") -->
+<meta property="og:image" content="img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="preload" href="fonts/fraunces-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:Fraunces;font-weight:600;font-display:swap;src:url(fonts/fraunces-latin-600-normal.woff2) format('woff2')}
+@font-face{font-family:Fraunces;font-weight:700;font-display:swap;src:url(fonts/fraunces-latin-700-normal.woff2) format('woff2')}
+@font-face{font-family:Inter;font-weight:400;font-display:swap;src:url(fonts/inter-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:Inter;font-weight:600;font-display:swap;src:url(fonts/inter-latin-600-normal.woff2) format('woff2')}
+@font-face{font-family:Inter;font-weight:700;font-display:swap;src:url(fonts/inter-latin-700-normal.woff2) format('woff2')}
+:root{--cacau:#3B2416;--massa:#FFF6EA;--creme:#FBE9D0;--caramelo:#C8691C;--caramelo-txt:#A5520F;--framboesa:#B8324F;--menta:#2E7D62;--cinza:#6B5B50;--linha:#E8D5BC;--max:1080px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:17px;line-height:1.65;color:var(--cacau);background:var(--massa);overflow-wrap:break-word}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--caramelo-txt)}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.15;margin:0 0 .5em;letter-spacing:-.01em}
+h1{font-size:clamp(2rem,6vw,3.4rem)}
+h2{font-size:clamp(1.6rem,4.4vw,2.4rem)}
+h3{font-size:1.25rem}
+p{margin:0 0 1em}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+section{padding:64px 0}
+.eyebrow{display:inline-block;font-weight:600;font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--caramelo-txt);margin-bottom:.8em}
+.btn{display:inline-block;background:var(--caramelo);color:#fff;font-weight:700;font-size:1.08rem;text-decoration:none;padding:16px 28px;border-radius:999px;box-shadow:0 6px 18px rgba(200,105,28,.35);transition:transform .15s,background .15s;text-align:center}
+.btn:hover{background:#B35C14;transform:translateY(-1px)}
+.btn:focus-visible{outline:3px solid #FFE2BF;outline-offset:3px}
+.under{font-size:.9rem;margin-top:12px;opacity:.85}
+/* topo */
+header.hero{background:var(--cacau);color:var(--massa);padding:22px 0 72px;position:relative;overflow:hidden}
+.hero .logo{height:44px;width:auto}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center;margin-top:48px}
+.hero .eyebrow{color:#E9A15C}
+.hero h1{color:var(--massa)}
+.hero .sub{font-size:1.15rem;color:var(--creme);max-width:34em}
+.hero .under{color:var(--creme)}
+.hero-img{border-radius:20px;background:rgba(255,246,234,.06);aspect-ratio:4/3;width:100%;object-fit:contain}
+/* problema */
+.problem{background:#fff}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.list-x{list-style:none;padding:0;margin:0 0 1em}
+.list-x li{padding:10px 0 10px 34px;border-bottom:1px solid var(--linha);position:relative}
+.list-x li::before{content:"";position:absolute;left:4px;top:18px;width:14px;height:14px;border-radius:50%;background:var(--framboesa);opacity:.85}
+.callout{background:var(--creme);border-radius:16px;padding:22px 24px;font-size:1.05rem}
+/* camadas */
+.layers{counter-reset:c;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:28px 0}
+.layer{background:#fff;border:1px solid var(--linha);border-radius:16px;padding:20px;position:relative}
+.layer::before{counter-increment:c;content:counter(c);font-family:Fraunces,Georgia,serif;font-weight:700;font-size:1.1rem;display:inline-grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--caramelo);color:#fff;margin-bottom:10px}
+.layer h3{margin-bottom:.3em}
+.layer p{margin:0;font-size:.97rem;color:var(--cinza)}
+.formula{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:clamp(1.05rem,3.4vw,1.4rem);background:var(--cacau);color:var(--massa);border-radius:16px;padding:22px;text-align:center}
+/* benefícios */
+.benefits{background:#fff}
+.checks{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:12px 32px}
+.checks li{padding-left:34px;position:relative}
+.checks li::before{content:"";position:absolute;left:0;top:5px;width:22px;height:22px;border-radius:50%;background:var(--menta)}
+.checks li::after{content:"";position:absolute;left:7px;top:10px;width:8px;height:5px;border-left:2.5px solid #fff;border-bottom:2.5px solid #fff;transform:rotate(-45deg)}
+/* materiais */
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:24px}
+.card{background:#fff;border:1px solid var(--linha);border-radius:16px;padding:22px}
+.card .tag{display:inline-block;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--creme);color:var(--caramelo-txt);padding:4px 10px;border-radius:999px;margin-bottom:10px}
+.card p{margin:0;color:var(--cinza);font-size:.97rem}
+.card.star{background:var(--cacau);color:var(--massa);border:0}
+.card.star p{color:var(--creme)}
+.card.star .tag{background:var(--caramelo);color:#fff}
+/* calculadora */
+.tool{background:var(--creme)}
+.shots{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:28px 0}
+.shot{margin:0}
+.shot img{width:100%;aspect-ratio:390/844;object-fit:cover;object-position:top;border-radius:22px;border:6px solid var(--cacau);background:#fff;box-shadow:0 10px 30px rgba(59,36,22,.18)}
+.shot figcaption{font-size:.88rem;color:var(--cinza);text-align:center;margin-top:8px}
+.notice{border-left:5px solid var(--caramelo);background:#fff;border-radius:0 14px 14px 0;padding:16px 20px;margin-top:20px}
+/* pacote */
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:14px;overflow:hidden;font-size:.97rem}
+th,td{text-align:left;padding:14px 16px;border-bottom:1px solid var(--linha);vertical-align:top}
+th{background:var(--cacau);color:var(--massa);font-weight:600}
+/* para quem */
+.fit{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.fit .box{border-radius:16px;padding:24px;background:#fff;border:1px solid var(--linha)}
+.fit .yes{border-top:6px solid var(--menta)}
+.fit .no{border-top:6px solid var(--framboesa)}
+.fit ul{padding-left:1.1em;margin:0}
+.fit li{margin-bottom:.5em}
+/* preço */
+.price{background:var(--cacau);color:var(--massa);text-align:center}
+.price h2{color:var(--massa)}
+.price-card{max-width:520px;margin:24px auto 0;background:var(--massa);color:var(--cacau);border-radius:22px;padding:32px 24px}
+.price-card .value{font-family:Fraunces,Georgia,serif;font-weight:700;font-size:clamp(2.6rem,10vw,3.6rem);line-height:1;margin:6px 0}
+.price-card ul{text-align:left;padding-left:1.1em;margin:18px 0 24px}
+.price-card .under{color:var(--cinza);opacity:1}
+/* faq */
+.faq details{background:#fff;border:1px solid var(--linha);border-radius:14px;margin-bottom:10px;padding:0 18px}
+.faq summary{cursor:pointer;font-weight:600;padding:16px 28px 16px 0;list-style:none;position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:0;top:12px;font-size:1.4rem;color:var(--caramelo-txt)}
+.faq details[open] summary::after{content:"−"}
+.faq details p{color:var(--cinza)}
+/* final */
+.final{text-align:center;background:#fff}
+.info{font-size:.95rem;color:var(--cinza)}
+.info h3{color:var(--cacau);font-size:1.1rem;margin-top:1.4em}
+.info ul{padding-left:1.1em}
+footer{background:var(--cacau);color:var(--creme);padding:32px 0;font-size:.9rem}
+footer a{color:#FFE2BF}
+footer .row{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between}
+.sticky{position:fixed;left:0;right:0;bottom:0;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(59,36,22,.96);display:none;z-index:10}
+.sticky .btn{width:100%;padding:13px 20px;box-shadow:none}
+@media (max-width:860px){
+  .hero-grid,.cols,.fit{grid-template-columns:1fr}
+  .layers{grid-template-columns:1fr 1fr}
+  .shots{grid-template-columns:repeat(2,1fr)}
+  .checks{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  body{font-size:16px}
+  section{padding:48px 0}
+  .layers,.cards{grid-template-columns:1fr}
+  .hero-grid{margin-top:32px;gap:28px}
+  .btn{display:block;width:100%}
+  .sticky.on{display:block}
+  body{padding-bottom:72px}
+  th,td{padding:12px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <img class="logo" src="img/logo-horizontal-fundo-escuro.png" alt="Fornada Lucrativa" width="520" height="167">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow">Para quem vende bolos, doces, salgados, marmitas e pães feitos em casa</span>
+        <h1>Descubra quanto custa de verdade cada receita — e cobre um preço que paga o seu trabalho.</h1>
+        <p class="sub">A Fornada Lucrativa é um kit com guia passo a passo, calculadora no celular e fichas prontas para você calcular o custo real de cada produto (ingredientes, embalagem, gás, custos fixos, taxas e a sua hora) e chegar a um preço que se sustenta. Sem fórmula mágica e sem planilha confusa.</p>
+        <a class="btn" data-checkout href="https://pay.kiwify.com.br/3kcaT19" rel="noopener">Quero o kit por R$ 37</a>
+        <p class="under">Pagamento único · Acesso imediato por e-mail · 7 dias para pedir reembolso</p>
+      </div>
+      <img class="hero-img" src="img/mockup-kit.png" alt="Materiais do kit Fornada Lucrativa: guia em PDF, caderno de fichas, planilha e a calculadora no celular" width="1600" height="1200">
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="problem">
+  <div class="wrap cols">
+    <div>
+      <span class="eyebrow">O problema</span>
+      <h2>“Vendi tudo… e cadê o dinheiro?”</h2>
+      <p>Se você vende comida feita em casa, talvez já tenha vivido isso: a semana foi cheia de encomendas, a cozinha não parou, mas no fim do mês o dinheiro parece ter sumido.</p>
+      <p>Na maioria das vezes, o problema não é falta de venda. É o preço calculado só pelos ingredientes. Ficam de fora coisas que custam caro, mas não aparecem na nota do mercado:</p>
+    </div>
+    <div>
+      <ul class="list-x">
+        <li><strong>O gás e a energia</strong> do forno ligado por horas</li>
+        <li><strong>A embalagem</strong>, o forminho, a fita, a etiqueta, a colher descartável</li>
+        <li><strong>As perdas</strong>: a massa que fica na tigela, o docinho que quebra, a fatia de prova</li>
+        <li><strong>As contas do mês</strong>: internet, MEI, parte da luz e da água</li>
+        <li><strong>A taxa da maquininha</strong> ou do aplicativo de entrega</li>
+        <li>E, principalmente, <strong>as horas do seu trabalho</strong></li>
+      </ul>
+      <p class="callout">Quando esses itens ficam fora da conta, quem paga a diferença é você — com o seu tempo ou com dinheiro do orçamento da casa.</p>
+    </div>
+  </div>
+</section>
+
+<section id="metodo">
+  <div class="wrap">
+    <span class="eyebrow">A solução</span>
+    <h2>O método das 6 camadas do preço</h2>
+    <p>A Fornada Lucrativa organiza o preço em seis camadas, sempre na mesma ordem. Você não precisa saber matemática: precisa saber o que gasta. A calculadora faz as contas.</p>
+    <div class="layers">
+      <div class="layer"><h3>Ingredientes</h3><p>Pela ficha técnica, considerando quanto a receita rende e quanto se perde.</p></div>
+      <div class="layer"><h3>Embalagem</h3><p>Tudo o que vai junto com o produto: caixa, forminho, fita, etiqueta, talher.</p></div>
+      <div class="layer"><h3>Gás e energia</h3><p>Pelo tempo em que o forno fica ligado para aquela fornada.</p></div>
+      <div class="layer"><h3>Sua mão de obra</h3><p>O valor da sua hora vezes o tempo que você trabalha na receita.</p></div>
+      <div class="layer"><h3>Custos fixos</h3><p>As contas do mês divididas pelas suas horas de produção.</p></div>
+      <div class="layer"><h3>Taxas e lucro</h3><p>Para que a maquininha ou o aplicativo não “comam” o seu ganho.</p></div>
+    </div>
+    <p class="formula">Preço sugerido = custo por unidade ÷ (1 − taxas − margem de lucro)</p>
+    <p>No guia, você vê cada camada explicada com um exemplo resolvido do começo ao fim. Na calculadora, só preenche os seus números.</p>
+  </div>
+</section>
+
+<section class="benefits">
+  <div class="wrap">
+    <span class="eyebrow">O que muda na prática</span>
+    <h2>Números claros para decidir com segurança</h2>
+    <ul class="checks">
+      <li><strong>Saber o custo de cada unidade</strong>, não só da receita inteira: quanto custa um brigadeiro, uma fatia, uma marmita.</li>
+      <li><strong>Descobrir quais produtos dão lucro</strong> e quais estão empatando — ou dando prejuízo — comparando com o preço que você cobra hoje.</li>
+      <li><strong>Atualizar o preço de um ingrediente em um só lugar</strong>: quando o leite condensado sobe, todas as receitas que usam ele são recalculadas.</li>
+      <li><strong>Colocar a sua hora na conta</strong> de um jeito simples, a partir de quanto você quer tirar por mês.</li>
+      <li><strong>Ter um preço arredondado</strong> pronto para o cardápio, sem centavos quebrados.</li>
+      <li><strong>Montar orçamentos de encomenda</strong> com vários itens, taxa de entrega e sinal, prontos para o WhatsApp.</li>
+      <li><strong>Saber quantas unidades vender</strong> para chegar à meta de ganho que você definiu para o mês.</li>
+      <li><strong>Ter as palavras certas</strong> para avisar de um reajuste, cobrar sinal e explicar sua política de encomendas.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="materiais">
+  <div class="wrap">
+    <span class="eyebrow">O que você recebe</span>
+    <h2>Um kit em que cada peça tem uma função</h2>
+    <div class="cards">
+      <div class="card star"><span class="tag">Ferramenta</span><h3>Calculadora Fornada</h3><p>A peça central do kit. Funciona no navegador do celular e do computador, sem instalar nada e sem criar conta. Ingredientes, fichas técnicas, preço sugerido, cardápio, orçamentos e metas.</p></div>
+      <div class="card"><span class="tag">PDF</span><h3>Guia Fornada Lucrativa</h3><p>O método das 6 camadas, passo a passo, com exemplos resolvidos: ficha técnica, valor da sua hora, custos fixos, taxas, teste com o mercado do seu bairro e como reajustar sem perder clientes. Fecha com um plano de 7 dias.</p></div>
+      <div class="card"><span class="tag">PDF imprimível</span><h3>Caderno de Fichas e Mensagens</h3><p>Ficha técnica em branco, levantamento de custos fixos, checklist de precificação, modelo de orçamento, registro semanal e o Kit de Mensagens: reajuste, orçamento, sinal e política de encomendas.</p></div>
+      <div class="card"><span class="tag">XLSX</span><h3>Planilha de Controle do Mês</h3><p>Abre no Excel e no Google Planilhas. Registre encomendas, vendas e despesas e veja o resultado do mês comparado com a sua meta.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="tool" id="calculadora">
+  <div class="wrap">
+    <span class="eyebrow">Conheça a ferramenta</span>
+    <h2>A Calculadora Fornada, no seu celular</h2>
+    <p>Você cadastra os ingredientes com o preço e o tamanho da embalagem que compra, monta a ficha técnica de cada receita (rendimento, perdas, tempo de trabalho e de forno) e configura uma vez o valor da sua hora, os custos fixos, o custo do forno e as taxas. A calculadora mostra o custo por unidade, o preço sugerido e o preço arredondado — e compara com o que você cobra hoje.</p>
+    <div class="shots">
+      <figure class="shot"><img src="img/app-ingredientes.png" alt="Tela de ingredientes da Calculadora Fornada" width="390" height="844" loading="lazy"><figcaption>Ingredientes com preço por embalagem</figcaption></figure>
+      <figure class="shot"><img src="img/app-receita.png" alt="Tela de ficha técnica com custo por unidade e preço sugerido" width="390" height="844" loading="lazy"><figcaption>Ficha técnica e preço sugerido</figcaption></figure>
+      <figure class="shot"><img src="img/app-cardapio.png" alt="Tela de cardápio com preços para copiar no WhatsApp" width="390" height="844" loading="lazy"><figcaption>Cardápio pronto para o WhatsApp</figcaption></figure>
+      <figure class="shot"><img src="img/app-orcamento.png" alt="Tela de orçamento de encomenda com sinal e taxa de entrega" width="390" height="844" loading="lazy"><figcaption>Orçamento com sinal e entrega</figcaption></figure>
+    </div>
+    <p>Também calcula metas (quantas unidades vender para ganhar o valor que você definiu), faz backup (exportar e importar) e começa com <strong>dados de exemplo</strong> para você aprender antes de colocar os seus.</p>
+    <div class="notice"><strong>Importante:</strong> os dados ficam salvos no navegador do aparelho em que você usa a calculadora. Não há login nem sincronização entre celular e computador. Para levar seus dados para outro aparelho, exporte e importe o arquivo de backup. Se você limpar os dados do navegador, o que estava salvo ali é apagado — por isso, faça backups de vez em quando.</div>
+  </div>
+</section>
+
+<section id="pacote">
+  <div class="wrap">
+    <span class="eyebrow">Conteúdo exato</span>
+    <h2>O que vem no pacote</h2>
+    <table>
+      <thead><tr><th>Item</th><th>Formato</th></tr></thead>
+      <tbody>
+        <tr><td>00 — Comece Aqui</td><td>PDF</td></tr>
+        <tr><td>01 — Guia Fornada Lucrativa: o método das 6 camadas do preço</td><td>PDF</td></tr>
+        <tr><td>02 — Caderno de Fichas e Mensagens (inclui o Kit de Mensagens)</td><td>PDF imprimível</td></tr>
+        <tr><td>03 — Calculadora Fornada</td><td>Link para usar no navegador + arquivo HTML para uso sem internet no computador</td></tr>
+        <tr><td>04 — Planilha de Controle do Mês</td><td>XLSX (Excel e Google Planilhas)</td></tr>
+      </tbody>
+    </table>
+    <p class="info" style="margin-top:12px">Tudo é entregue de forma digital. Nenhum item físico é enviado.</p>
+  </div>
+</section>
+
+<section class="benefits">
+  <div class="wrap">
+    <h2>Para quem é — e para quem não é</h2>
+    <div class="fit">
+      <div class="box yes">
+        <h3>É para você se…</h3>
+        <ul>
+          <li>vende (ou quer começar a vender) bolos, doces, salgados, marmitas, pães, tortas ou outros alimentos feitos em casa;</li>
+          <li>calcula o preço “de cabeça” ou só pelos ingredientes e desconfia que está cobrando pouco;</li>
+          <li>vende bastante, mas não sabe dizer quanto sobra;</li>
+          <li>precisa reajustar preços e não sabe como explicar isso aos clientes;</li>
+          <li>prefere uma ferramenta simples no celular a uma planilha cheia de abas.</li>
+        </ul>
+      </div>
+      <div class="box no">
+        <h3>Não é para você se…</h3>
+        <ul>
+          <li>procura um curso de receitas ou de confeitaria — aqui não ensinamos a cozinhar;</li>
+          <li>quer uma promessa de faturamento: o kit ajuda a calcular e decidir; o resultado depende das suas vendas e escolhas;</li>
+          <li>precisa de um sistema completo com estoque, nota fiscal, vários usuários e sincronização na nuvem;</li>
+          <li>já tem contabilidade de custos estruturada por um profissional.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="price" id="preco">
+  <div class="wrap">
+    <h2>Fornada Lucrativa — kit completo</h2>
+    <div class="price-card">
+      <div>Pagamento único</div>
+      <div class="value">R$ 37,00</div>
+      <div>Sem mensalidade</div>
+      <ul>
+        <li>Guia Fornada Lucrativa (PDF)</li>
+        <li>Calculadora Fornada (link + versão offline)</li>
+        <li>Caderno de Fichas e Mensagens (PDF)</li>
+        <li>Planilha de Controle do Mês (XLSX)</li>
+        <li>Comece Aqui (PDF)</li>
+      </ul>
+      <a class="btn" data-checkout href="https://pay.kiwify.com.br/3kcaT19" rel="noopener">Quero o kit por R$ 37</a>
+      <p class="under">Formas de pagamento e parcelamento conforme o checkout da Kiwify.<br>Acesso por e-mail após a aprovação · 7 dias para pedir reembolso</p>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="wrap">
+    <span class="eyebrow">Dúvidas</span>
+    <h2>Perguntas frequentes</h2>
+    <details><summary>Funciona no celular?</summary><p>Sim. A calculadora foi feita para o navegador do celular (Chrome, Safari e outros atuais) e também funciona no computador. Os PDFs abrem em qualquer leitor de PDF, e a planilha abre no Excel ou no Google Planilhas.</p></details>
+    <details><summary>Meus dados ficam onde?</summary><p>No navegador do próprio aparelho. Nós não recebemos, não vemos e não guardamos as receitas, os preços ou os números que você digita na calculadora.</p></details>
+    <details><summary>Consigo usar no celular e no computador com os mesmos dados?</summary><p>Não automaticamente: não há sincronização. Você pode exportar um arquivo de backup em um aparelho e importar no outro.</p></details>
+    <details><summary>Preciso de internet?</summary><p>Para receber o kit e abrir a calculadora pelo link, sim. Depois de aberta, ela faz as contas no próprio aparelho. Para usar sem internet no computador, há também a versão em arquivo (HTML) dentro do kit.</p></details>
+    <details><summary>Serve para salgados, marmitas, pães e outros produtos?</summary><p>Sim. O método vale para qualquer alimento produzido em casa. Os exemplos do guia são principalmente de confeitaria, mas a lógica (ficha técnica, rendimento, embalagem, forno, hora, custos fixos e taxas) é a mesma.</p></details>
+    <details><summary>E se eu não souber mexer em planilha?</summary><p>Não tem problema. A ferramenta principal é a calculadora, com campos explicados e dados de exemplo. A planilha é um complemento para o controle do mês, e o guia ensina como preencher.</p></details>
+    <details><summary>Como eu recebo?</summary><p>Assim que o pagamento é aprovado, a Kiwify envia ao seu e-mail as instruções de acesso. Lá você baixa os arquivos e encontra o link da calculadora. No boleto, a liberação depende da compensação do pagamento.</p></details>
+    <details><summary>Não recebi o e-mail. E agora?</summary><p>Confira a caixa de spam e a aba Promoções. Se não encontrar, escreva para <a href="mailto:contato.fornadalucrativa@gmail.com">contato.fornadalucrativa@gmail.com</a> informando o e-mail usado na compra.</p></details>
+    <details><summary>A calculadora me diz o preço exato que devo cobrar?</summary><p>Ela mostra o preço que cobre os custos que você informou, mais a margem que você escolheu. A decisão final é sua: o guia ensina a comparar esse número com o mercado da sua região e a ajustar tamanhos, porções e cardápio.</p></details>
+    <details><summary>Vou ganhar mais dinheiro com o kit?</summary><p>Não prometemos isso. O kit mostra quanto custa e quanto sobra em cada produto. O que você faz com essa informação — e quanto vende — é o que define o resultado.</p></details>
+    <details><summary>Preciso ser MEI?</summary><p>Não para usar o kit. O guia comenta os cuidados básicos para quem vende alimentos e indica onde buscar orientação oficial (Sebrae, prefeitura e vigilância sanitária), mas não substitui contador nem orientação jurídica.</p></details>
+    <details><summary>Tem mensalidade?</summary><p>Não. É pagamento único de R$ 37,00.</p></details>
+    <details><summary>Posso pedir reembolso?</summary><p>Sim. Você tem 7 dias corridos a partir da compra para pedir o reembolso integral, sem precisar justificar, diretamente pela Kiwify ou pelo e-mail de suporte.</p></details>
+    <details><summary>As atualizações estão incluídas?</summary><p>Correções e melhorias nos arquivos desta versão são enviadas a quem comprou, pelo mesmo e-mail de acesso. Produtos novos e diferentes podem ser vendidos separadamente.</p></details>
+    <details><summary>Posso compartilhar ou revender os materiais?</summary><p>O kit é para uso pessoal de quem comprou, no próprio negócio. Não é permitido revender, redistribuir ou publicar os arquivos.</p></details>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2>Coloque cada custo na conta — inclusive você.</h2>
+    <p>Você já sabe fazer a receita. A Fornada Lucrativa ajuda a fazer a conta.</p>
+    <a class="btn" data-checkout href="https://pay.kiwify.com.br/3kcaT19" rel="noopener">Quero o kit por R$ 37</a>
+    <p class="under">Pagamento único · Acesso imediato por e-mail · 7 dias para pedir reembolso</p>
+
+    <div class="info" style="text-align:left;max-width:760px;margin:48px auto 0">
+      <h3>Informações importantes</h3>
+      <ul>
+        <li>Produto 100% digital: guias em PDF, planilha XLSX e calculadora que funciona no navegador.</li>
+        <li>A calculadora guarda os dados no navegador do aparelho. Não há conta, login ou sincronização. Faça backups com o botão “Exportar”.</li>
+        <li>Recomendado: celular ou computador com navegador atualizado; leitor de PDF; Excel ou Google Planilhas (gratuito) para a planilha.</li>
+        <li>O kit traz conteúdo educativo sobre custos e preços. Não é assessoria contábil, jurídica ou financeira individual.</li>
+        <li>Pagamento processado pela Kiwify. Os seus dados de pagamento são tratados pela plataforma.</li>
+      </ul>
+      <h3>Suporte</h3>
+      <p>Dúvidas sobre acesso, arquivos ou uso da calculadora: <a href="mailto:contato.fornadalucrativa@gmail.com">contato.fornadalucrativa@gmail.com</a>. Resposta em até 2 dias úteis.</p>
+      <h3>Reembolso</h3>
+      <p>Você pode desistir da compra em até 7 dias corridos a partir da data da compra, com reembolso integral, conforme o direito de arrependimento previsto no art. 49 do Código de Defesa do Consumidor. O pedido pode ser feito pela própria Kiwify (área de compras, com o e-mail usado no pedido) ou pelo e-mail de suporte. O estorno segue os prazos do meio de pagamento utilizado.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap row">
+    <span>Fornada Lucrativa · Preço justo para a receita. E para quem faz.</span>
+    <span><a href="privacidade.html">Política de Privacidade</a> · <a href="termos.html">Termos de Uso</a> · <a href="mailto:contato.fornadalucrativa@gmail.com">contato.fornadalucrativa@gmail.com</a></span>
+  </div>
+</footer>
+
+<div class="sticky" id="sticky"><a class="btn" data-checkout href="https://pay.kiwify.com.br/3kcaT19" rel="noopener">Quero o kit por R$ 37</a></div>
+
+<script>
+/* ===== CONFIGURAÇÃO: troque SOMENTE esta linha pelo link do checkout da Kiwify ===== */
+const CHECKOUT_URL = "https://pay.kiwify.com.br/3kcaT19";
+/* ================================================================================== */
+(function () {
+  var ok = /^https:\/\//.test(CHECKOUT_URL);
+  document.querySelectorAll("[data-checkout]").forEach(function (a) {
+    if (ok) { a.href = CHECKOUT_URL; a.rel = "noopener"; }
+    else {
+      a.addEventListener("click", function (e) {
+        e.preventDefault();
+        alert("Link de compra ainda não configurado. Edite a constante CHECKOUT_URL no final do arquivo index.html.");
+      });
+    }
+  });
+  var sticky = document.getElementById("sticky"), hero = document.querySelector(".hero"), price = document.getElementById("preco");
+  if ("IntersectionObserver" in window) {
+    var heroVis = true, priceVis = false;
+    var upd = function () { sticky.classList.toggle("on", !heroVis && !priceVis); };
+    new IntersectionObserver(function (es) { heroVis = es[0].isIntersecting; upd(); }).observe(hero);
+    new IntersectionObserver(function (es) { priceVis = es[0].isIntersecting; upd(); }).observe(price);
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Fornada Lucrativa">
+  <rect width="512" height="512" rx="112" fill="#3B2416"/>
+  <path d="M184 112 H404 a36 36 0 0 1 36 36 V364 a36 36 0 0 1 -36 36 H184 a20 20 0 0 1 -14 -6 L82 270 a20 20 0 0 1 0 -28 L170 118 a20 20 0 0 1 14 -6 Z" fill="#C8691C"/>
+  <circle cx="160" cy="256" r="24" fill="#3B2416"/>
+  <g fill="none" stroke="#FFF6EA" stroke-width="24" stroke-linecap="round">
+    <path d="M250 338 c-26 -30 26 -52 0 -84 s26 -52 0 -84"/>
+    <path d="M318 338 c-26 -30 26 -52 0 -84 s26 -52 0 -84"/>
+    <path d="M386 338 c-26 -30 26 -52 0 -84 s26 -52 0 -84"/>
+  </g>
+</svg>
